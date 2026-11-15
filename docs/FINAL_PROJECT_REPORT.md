@@ -6,17 +6,44 @@
 
 ## Final OOP Project Report
 
-**Course:** CS F213 / MAC F212 - Object-Oriented Programming  
-**Semester:** I, Academic Year 2026-2027  
 **Project:** Intelligent IT Service Management & Incident Resolution System (I-ITSM)
 
-**Submitted by:** [Enter group number and student names / IDs]  
-**Submitted to:** [Enter instructor name]  
-**Submission date:** [Confirm date required by course]
+**Course:** CS F213 / MAC F212 - Object-Oriented Programming
+
+**Semester / academic year:** Semester I, 2026-2027
+
+**University:** BITS Pilani
+
+**Campus:** Hyderabad Campus
+
+**Instructor:** Subhrakanta Panda
+
+**Group Number:** 85
+
+**Submitted by:**
+
+1. Achin Singhal - 2025A7PS0201H
+2. Aditya Anand - 2025A7PS0316U
+3. Gunika Gupta - 2023B4A70757H
+4. Madhur Rawtani - 2024B4AD0707H
+
+**Course submission deadline:** 22 November 2026
 
 **Project repository:** [https://github.com/Achin-singhal/I-ITSM](https://github.com/Achin-singhal/I-ITSM)
 
 </div>
+
+## Team Contributions and Responsibilities
+
+The responsibility areas and percentages below are the team's agreed allocation for this project. They identify areas of ownership and contribution, including participation in implementation, review, validation, testing, documentation, and demonstration preparation where applicable. They do not assign exclusive authorship of a module, claim that any member independently implemented an entire module, or attribute specific commits or historical work.
+
+| Team Member | Student ID | Responsibility Area | Contribution |
+|---|---|---|---:|
+| Achin Singhal | 2025A7PS0201H | Backend architecture, Spring Boot APIs, incident lifecycle, business logic and system integration | 25% |
+| Aditya Anand | 2025A7PS0316U | React frontend, dashboards, role-based interfaces and user workflows | 25% |
+| Gunika Gupta | 2023B4A70757H | PostgreSQL database, entity design, migrations and administration modules | 25% |
+| Madhur Rawtani | 2024B4AD0707H | Intelligent features, SLA management, testing, reports and documentation | 25% |
+| **Total** |  |  | **100%** |
 
 > **Evidence convention.** This report separates source evidence, automated tests, and manually demonstrated behavior. PostgreSQL migration, health, administration, audit, incident workflow, duplicate detection and CSV export results below were confirmed by the project owner for the local application; they are not presented as automated PostgreSQL tests. The professor's assignment PDF is the source for academic requirements.
 
@@ -122,7 +149,7 @@ I-ITSM provides a React single-page client and a REST API under `/api/v1`. Sprin
 | Administrator / IT Manager | Manage users/roles/activity; configure technician profiles and assignment strategies; create/update/deactivate services and categories; configure SLA policies; view incidents; assign technicians; inspect audit history and feedback; access analytics and exports. |
 | Scheduled SLA monitor | Evaluate unresolved tracking rows, persist warnings/escalations/violations, and publish corresponding audit and notification events. It is an automated actor, not a login role. |
 
-**Figure 1.** Role interactions and scheduled monitor use cases are documented in [the use case diagram](diagrams/USE_CASE_DIAGRAM.md). The diagram is Mermaid source and has not been independently rendered in a GitHub page as part of this report.
+**Figure 1.** Role interactions and scheduled monitor use cases are documented in [the use case diagram](diagrams/USE_CASE_DIAGRAM.md). The PDF includes a rendered diagram panel based on that Mermaid source; the Markdown diagram remains the editable source.
 
 ## 11. System architecture
 
@@ -207,7 +234,7 @@ Flyway versions present in source are V1-V6. V6 additively adds nullable `audit_
 - **ER diagram:** [ER_DIAGRAM.md](diagrams/ER_DIAGRAM.md) - persistent entities, keys, cardinalities, and inferred versus database-enforced relations.
 - **Architecture diagram:** included in [ARCHITECTURE.md](ARCHITECTURE.md) and summarized in this report.
 
-The use-case and class diagrams use Mermaid flowchart/class syntax; the ER diagram uses Mermaid ER notation. The diagram documents state that elements were compared with source. This report has not independently rendered them in GitHub's Mermaid renderer.
+The repository keeps Mermaid source for the use-case, class, and ER diagrams. The PDF includes readable rendered diagram panels based on those source definitions. The panels are for print readability; the Markdown diagram files remain the editable sources and should be consulted for the complete relationship text.
 
 ## 17. Module-wise implementation
 
@@ -229,19 +256,19 @@ Frontend implementation is under `frontend/src`: `App.jsx`, role pages, `AdminPa
 
 ## 18. Intelligent features
 
-### 15.1 Priority calculation
+### 18.1 Priority calculation
 
 `WeightedPriorityCalculationStrategy` combines impact, urgency, business criticality, affected-user count bands, and affected-service criticality using configurable weights and thresholds. It stores a score, selected priority, and explanation. The documented defaults map P1/P2/P3/P4 to Critical/High/Medium/Low; the exact scoring rules are configuration and code policy, not a learned model.
 
-### 15.2 Duplicate incident suggestions
+### 18.2 Duplicate incident suggestions
 
 `IncidentSimilarityService` normalizes text and compares token sets using Jaccard similarity. The duplicate score weights title (0.35), description (0.40), category equality (0.15), and affected-service similarity (0.10). Results are thresholded, ranked, capped, and omit closed incidents. The employee can review suggestions and continue creating a separate incident; the application does not merge or delete records.
 
-### 15.3 Related incident correlation
+### 18.3 Related incident correlation
 
 Related incident scoring considers text similarity, category, affected service, and temporal proximity. Results are suggestions for technician/admin review; they are not persisted as a permanent correlation relationship and do not change incident status.
 
-### 15.4 Technician recommendation and SLA escalation
+### 18.4 Technician recommendation and SLA escalation
 
 Technician ranking reuses assignment strategies and applies active account, profile availability, workload capacity and skill eligibility rules, then considers workload and experience. Scheduled SLA monitoring records approaching deadlines and response/resolution breaches, with persistence flags/locks intended to avoid duplicate processing. These are deterministic business rules, not predictive AI. Automated integration tests exist, but a live PostgreSQL multi-instance test is not reported.
 
@@ -413,9 +440,9 @@ These files are export artifacts, not test cases and not proof that every filter
 
 | Export | Supplied file | Rows | Intended supporting evidence |
 |---|---|---:|---|
-| Incident export | [incidents.csv.csv](evidence/public/exports/incidents.csv) | 7 | Exported incident identifiers, tickets, statuses, priorities, categories, assignee labels, and timestamps. |
-| SLA export | [sla.csv.csv](evidence/public/exports/sla.csv) | 7 | Exported SLA status, response/resolution deadlines, warning flags, and violation flags. |
-| Technician workload export | [technicians.csv.csv](evidence/public/exports/technicians.csv) | 1 | Exported availability, workload/capacity, assignment and resolution counts, and average resolution time. |
+| Incident export | [incidents.csv](evidence/public/exports/incidents.csv) | 7 | Exported incident identifiers, tickets, statuses, priorities, categories, assignee labels, and timestamps. |
+| SLA export | [sla.csv](evidence/public/exports/sla.csv) | 7 | Exported SLA status, response/resolution deadlines, warning flags, and violation flags. |
+| Technician workload export | [technicians.csv](evidence/public/exports/technicians.csv) | 1 | Exported availability, workload/capacity, assignment and resolution counts, and average resolution time. |
 
 The linked public CSV copies replace incident identifiers, titles, descriptions, and technician identity with generic values while retaining status, priority, category, SLA flags, workload counts, and timing fields needed to illustrate the export structure. The original CSV exports remain locally preserved and excluded from public upload. The 78-test Surefire results and the report/CSV integration tests remain the automated evidence; these CSV files are supplementary output samples only.
 
@@ -474,7 +501,7 @@ The professor requires three demonstrated workflows and a 15–20-minute recorde
 - Audit records are append-only by application convention, not protected by a database tamper-evidence mechanism. Older audit records are preserved and are not backfilled with the V6 generic target columns.
 - The managed IT service catalog is not a full service request, CMDB, asset, or change-management implementation. No repeatable seed-data script for the demo users/incidents was verified; the screenshots and CSVs are snapshots of supplied demo data.
 - No load/performance benchmark, external penetration test, or production deployment assessment is available.
-- Team names, individual contributions, instructor/submission metadata, and whether the exact submitted revision is available remotely were not verified. The public repository URL is included on the title page. Original screenshot and CSV evidence contains account identifiers, email addresses, and incident descriptions; original files are kept locally and excluded from public upload. This report references sanitized public copies.
+- Group Number 85 and the team's agreed responsibility allocation are recorded on the cover and in the Team Contributions and Responsibilities section. The actual submission date has not been supplied; the course deadline is listed separately and is not presented as the submission date. The public repository URL is included on the title page. Original screenshot and CSV evidence contains account identifiers, email addresses, and incident descriptions; original files are kept locally and excluded from public upload. This report references sanitized public copies.
 
 ## 24. Future scope
 
@@ -496,7 +523,7 @@ These are future possibilities, not implemented features or measured performance
 
 I-ITSM implements a role-aware incident workflow using a Java/Spring modular monolith and a React frontend. Current source includes incident creation and lifecycle management, priority calculation, multiple technician assignment strategies, SLA monitoring, persistent in-app notifications, audit history, search/reporting, a managed service catalog, categories, feedback, and local intelligent suggestions. The code and automated suite demonstrate use of OOP concepts and Strategy, Factory, and Observer patterns.
 
-The latest Surefire reports contain 78 tests with 0 failures, 0 errors, and 0 skipped; the latest recorded frontend production build succeeded. The backend automated integration tests use H2. Separately, the project owner confirmed Flyway V1–V6 applied to local PostgreSQL and the health endpoint returned HTTP 200. The owner also confirmed user/service/category management, audit events for user/service/category/feedback, the complete incident lifecycle, duplicate detection, and CSV export. Supplied UI screenshots and three CSV exports now provide supplementary visual/output evidence. Remaining work includes title-page/team metadata, comprehensive PostgreSQL query/schema/concurrency verification, and the professor-required 15–20-minute video and shared link. Do not treat screenshot or CSV artifacts as automated tests.
+The latest recorded Surefire reports contain 78 tests with 0 failures, 0 errors, and 0 skipped; the latest recorded frontend production build succeeded. The backend automated integration tests use H2. Separately, the project owner confirmed Flyway V1–V6 applied to local PostgreSQL and the health endpoint returned HTTP 200. The owner also confirmed user/service/category management, audit events for user/service/category/feedback, the complete incident lifecycle, duplicate detection, and CSV export. Supplied UI screenshots and three CSV exports now provide supplementary visual/output evidence. Remaining work includes comprehensive PostgreSQL query/schema/concurrency verification and the professor-required 15–20-minute video and shared link. Do not treat screenshot or CSV artifacts as automated tests.
 
 ## 26. References
 
@@ -515,8 +542,9 @@ The latest Surefire reports contain 78 tests with 0 failures, 0 errors, and 0 sk
 
 ## 27. Pre-submission manual confirmation checklist
 
-- [ ] Replace title-page placeholders with the official group number, all student names/IDs, instructor name, and confirmed submission date.
-- [ ] Review each student's actual contribution; repository documentation uses generic student labels and is not evidence of named ownership.
+- [ ] Use Group Number 85 in the required demonstration-video filename.
+- [ ] Preserve the team's agreed responsibility allocation when preparing the final submission.
+- [ ] Confirm the actual submission date when submitting; the cover lists only the course deadline (22 November 2026).
 - [ ] Confirm the sanitized public copies remain the only evidence files selected for public upload; original unredacted evidence is Git-ignored and remains local. The report embeds selected sanitized screenshots and CSV exports with relative paths.
 - [ ] Record the professor-required 15–20-minute walkthrough demonstrating all three workflows. Existing screenshots cover key states but are not a video or proof of every transition.
 - [ ] Upload the recorded 15–20-minute project video to the required shared folder and provide its link.
@@ -524,7 +552,7 @@ The latest Surefire reports contain 78 tests with 0 failures, 0 errors, and 0 sk
 - [ ] Confirm admin, technician and employee accounts exist in the demo environment without placing credentials in the report/video.
 - [ ] Reconcile stale claims in `SRS.md`, `TRD.md`, `TECHNOLOGY_SELECTION.md`, `REQUIREMENT_TRACEABILITY.md`, `FINAL_REQUIREMENT_AUDIT.md`, and README with current source and migration history before exporting the final PDF.
 - [ ] Confirm the repository remote is accessible and submit its link through the professor's requested channel/spreadsheet.
-- [ ] Export this Markdown report to the professor-required PDF format and inspect page breaks, Mermaid rendering, tables, and screenshot captions before submission.
+- [ ] Review the generated PDF's page breaks, rendered diagrams, tables, screenshot captions, references, and page numbering before submission.
 
 
 

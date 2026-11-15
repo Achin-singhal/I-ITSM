@@ -1,0 +1,8 @@
+"id","ticket_number","title","description","status","priority","category","assignee","created_at"
+"1","PUBLIC-INC-001","Demo incident 1","Incident description redacted for public release.","VERIFIED","LOW","APPLICATION","Technician 1","2026-11-15T17:44:14.617824Z"
+"2","PUBLIC-INC-002","Demo incident 2","Incident description redacted for public release.","VERIFIED","MEDIUM","NETWORK","Technician 1","2026-11-15T16:03:35.023701Z"
+"3","PUBLIC-INC-003","Demo incident 3","Incident description redacted for public release.","VERIFIED","MEDIUM","NETWORK","Technician 1","2026-11-15T15:46:38.785840Z"
+"4","PUBLIC-INC-004","Demo incident 4","Incident description redacted for public release.","CLASSIFIED","MEDIUM","NETWORK","","2026-11-15T15:08:25.759390Z"
+"5","PUBLIC-INC-005","Demo incident 5","Incident description redacted for public release.","CLASSIFIED","MEDIUM","APPLICATION","","2026-11-15T13:29:59.782984Z"
+"6","PUBLIC-INC-006","Demo incident 6","Incident description redacted for public release.","VERIFIED","MEDIUM","APPLICATION","Technician 1","2026-11-15T12:58:10.691491Z"
+"7","PUBLIC-INC-007","Demo incident 7","Incident description redacted for public release.","RESOLVED","MEDIUM","NETWORK","Technician 1","2026-11-15T11:24:27.367750Z"

@@ -73,3 +73,9 @@ pnpm-debug.log*
 
 # Local full-project archive; source and documentation are tracked directly.
 /I_ITSM.zip
+
+# Private/unredacted evidence. Publish only reviewed sanitized copies.
+/docs/evidence/screenshots/
+/docs/evidence/exports/
+!/docs/evidence/public/
+!/docs/evidence/public/**

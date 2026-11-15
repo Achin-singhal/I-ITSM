@@ -1,0 +1,2 @@
+"technician_id","name","email","available","active_workload","max_active_workload","assigned_incidents_in_range","resolved_incidents_in_range","average_resolution_seconds"
+"1","Technician 1","technician1@example.invalid","true","0","10","5","5","1750.1309362"

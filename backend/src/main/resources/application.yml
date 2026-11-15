@@ -1,0 +1,65 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: i-itsm-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/i_itsm_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:validate}
+    show-sql: ${JPA_SHOW_SQL:false}
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+
+app:
+  intelligence:
+    duplicate-threshold: ${DUPLICATE_SIMILARITY_THRESHOLD:0.62}
+    related-threshold: ${RELATED_INCIDENT_THRESHOLD:0.35}
+    related-window-days: ${RELATED_INCIDENT_WINDOW_DAYS:14}
+  sla:
+    monitor-interval-ms: ${SLA_MONITOR_INTERVAL_MS:30000}
+    warning-threshold-percent: ${SLA_WARNING_THRESHOLD_PERCENT:0.20}
+    escalation-threshold-percent: ${SLA_ESCALATION_THRESHOLD_PERCENT:0.10}
+  priority:
+    strategy: ${PRIORITY_STRATEGY:WEIGHTED}
+    weights:
+      impact: ${PRIORITY_WEIGHT_IMPACT:0.25}
+      urgency: ${PRIORITY_WEIGHT_URGENCY:0.25}
+      business-criticality: ${PRIORITY_WEIGHT_BUSINESS:0.25}
+      affected-users: ${PRIORITY_WEIGHT_USERS:0.15}
+      service-criticality: ${PRIORITY_WEIGHT_SERVICE:0.10}
+    thresholds:
+      p1: ${PRIORITY_THRESHOLD_P1:80}
+      p2: ${PRIORITY_THRESHOLD_P2:60}
+      p3: ${PRIORITY_THRESHOLD_P3:35}
+  jwt:
+    secret: ${JWT_SECRET:}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
